@@ -1,0 +1,16 @@
+* {
+    appearance: none;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    user-select: none;
+
+    /* ::selection {
+        background-color: var(--gray-3);
+        color: white;
+    } */
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--fontFamilyDefault);
+}

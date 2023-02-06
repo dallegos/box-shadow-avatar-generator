@@ -1,0 +1,73 @@
+#controlsBox {
+    h3 {
+        margin-bottom: var(--gap);
+    }
+
+    #newColorContainer {
+        display: flex;
+        gap: var(--gap);
+
+        input[type="color"] {
+            height: 100%;
+            width: 42px;
+            height: 42px;
+            display: block;
+            box-shadow: var(--box-shadow-inactive);
+            cursor: pointer;
+        }
+
+        input[type="text"] {
+            border: var(--borderSize) solid var(--gray-3);
+            padding: 10px;
+            box-shadow: var(--box-shadow-inactive);
+        }
+    }
+
+    #controlsContainer {
+        .control {
+            width: 100%;
+            border: var(--borderSize) solid var(--gray-3);
+            background: var(--backgroundColor);
+            box-shadow: var(--box-shadow-inactive);
+            margin-top: var(--gap);
+            display: flex;
+
+            p {
+                padding: 10px;
+                max-width: 100px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            .inputContainer {
+                margin: 0;
+                width: 80px;
+                overflow: hidden;
+
+                input[type="color"] {
+                    border: none;
+                    outline: none;
+                    transform: translate(-2px, -2px);
+                    width: 200%;
+                    height: 200%;
+                    margin: 0;
+                    cursor: pointer;
+                }
+            }
+
+            div + div {
+                width: calc(100% - 80px);
+                display: flex;
+                justify-content: space-between;
+
+                div {
+                    display: flex;
+
+                    button {
+                    }
+                }
+            }
+        }
+    }
+}

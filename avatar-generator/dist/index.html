@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+            rel="stylesheet"
+        />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Box shadow avatar generator</title>
+    </head>
+    <body>
+        <div id="mainContainer">
+            <div id="generatorContainer">
+                <div id="avatarBox"></div>
+
+                <div id="controlsBox">
+                    <h3>Add a color reference</h3>
+                    <div id="newColorContainer">
+                        <input
+                            type="text"
+                            name="new-color-reference-name"
+                            id="new-color-reference-name"
+                            data-ref="reference-name"
+                            placeholder="Reference name"
+                        />
+
+                        <input
+                            type="color"
+                            name="new-color-reference-color"
+                            id="new-color-reference-color"
+                            data-ref="reference-color"
+                        />
+
+                        <button
+                            class="button secondary"
+                            id="add-color-reference"
+                            data-ref="reference-button"
+                        >
+                            Add
+                        </button>
+                    </div>
+
+                    <div id="controlsContainer"></div>
+                </div>
+            </div>
+
+            <div id="galleryContainer">Gallery</div>
+        </div>
+
+        <script src="bundle.js"></script>
+    </body>
+</html>
