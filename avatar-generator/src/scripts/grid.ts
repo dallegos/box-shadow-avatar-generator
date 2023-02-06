@@ -1,10 +1,9 @@
 import { GridItem, IGridItemPayload } from '../interfaces';
-import { getRandomColor, isMouseDown } from './utils';
+import { isMouseDown } from './utils';
 import { ELEMENTS } from './elements';
+import { globalColorReference } from './global-reference';
 
 export const GridItems: IGridItemPayload[] = [];
-
-const selectedColor: string = getRandomColor();
 
 /**
  * Closure for each item
@@ -25,12 +24,11 @@ function gridItem(props: GridItem): IGridItemPayload {
         properties.name = name;
     }
 
-    properties.element.addEventListener('click', () => {
+    properties.element.addEventListener('click', (): void => {
         props.onClick({ setColor, setName });
-        console.log(getProperties());
     });
 
-    properties.element.addEventListener('mouseenter', () => {
+    properties.element.addEventListener('mouseenter', (): void => {
         if (isMouseDown()) {
             props.onClick({ setColor, setName });
         }
@@ -55,13 +53,13 @@ export function generateGrid(): void {
         const root = document.createElement('div');
         GridItems.push(
             gridItem({
-                color: 'transparent', //getRandomColor()
+                color: 'transparent',
+                name: 'plain-color',
                 element: root,
                 index,
-                name: 'plain-color',
                 onClick: ({ setColor, setName }) => {
-                    setColor(selectedColor);
-                    setName('nuevo');
+                    setColor(globalColorReference.getReference().color);
+                    setName(globalColorReference.getReference().name);
                 },
             })
         );

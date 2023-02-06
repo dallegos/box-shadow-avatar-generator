@@ -1,5 +1,7 @@
 import { IColorReference, IColorReferenceProps } from '../interfaces';
 import { ELEMENTS } from './elements';
+import { globalColorReference } from './global-reference';
+import { controls } from '../app';
 import { slugify } from './utils';
 
 export const ColorReferences: IColorReference[] = [];
@@ -22,33 +24,6 @@ export function colorReference(props: IColorReferenceProps): IColorReference {
         return properties.name;
     }
 
-    /*
-
-    <div class="control">
-        <div class="inputContainer">
-            <input
-                type="color"
-                name="skin-control"
-                id="skin-control"
-            />
-        </div>
-
-        <div>
-            <p>Skin asdas das dasd as</p>
-
-            <div>
-                <button class="button tertiary">
-                    <img src="./assets/images/pencil.svg" />
-                </button>
-                <button class="button tertiary">
-                    <img src="./assets/images/trash.svg" />
-                </button>
-            </div>
-        </div>
-    </div>
-
-    */
-
     function createElement(): void {
         const root = document.createElement('div');
         root.classList.add('control');
@@ -59,8 +34,8 @@ export function colorReference(props: IColorReferenceProps): IColorReference {
         const input = document.createElement('input');
         input.type = 'color';
         input.value = properties.color;
-        input.name = `${slugify(properties.name)}-control`;
-        input.id = `${slugify(properties.name)}-control`;
+        input.name = `${getSlug()}-control`;
+        input.id = `${getSlug()}-control`;
 
         inputContainer.append(input);
 
@@ -82,6 +57,13 @@ export function colorReference(props: IColorReferenceProps): IColorReference {
         const removeButton = document.createElement('button');
         removeButton.classList.add('button', 'tertiary');
 
+        editButton.addEventListener('click', () => {
+            globalColorReference.setReference({
+                ...properties,
+                slug: getSlug(),
+            });
+        });
+
         const removeImage = document.createElement('img');
         removeImage.src = './assets/images/trash.svg';
 
@@ -99,23 +81,18 @@ export function colorReference(props: IColorReferenceProps): IColorReference {
     createElement();
 
     return {
-        getColor,
-        getName,
-        getSlug,
+        color: getColor(),
+        name: getName(),
+        slug: getSlug(),
     };
 }
 
 export function initColorReferences() {
-    ELEMENTS.referenceButton.addEventListener('click', (): void => {
-        const color = ELEMENTS.referenceColor.value;
-        const name = ELEMENTS.referenceName.value;
-
-        if (!color || !name) return;
-
+    controls.addCallback('addColorReference', (properties): void => {
         ColorReferences.push(
             colorReference({
-                color,
-                name,
+                color: properties.color,
+                name: properties.name,
             })
         );
     });

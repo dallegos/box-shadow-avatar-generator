@@ -4,7 +4,12 @@ export interface IColorReferenceProps {
 }
 
 export interface IColorReference {
-    getColor: () => string;
-    getName: () => string;
-    getSlug: () => string;
+    color: string;
+    name: string;
+    slug: string;
+}
+
+export interface IGlobalReferencesPayload {
+    setReference: (reference: IColorReference) => void;
+    getReference: () => IColorReference;
 }
